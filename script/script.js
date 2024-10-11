@@ -65,3 +65,8 @@ function showContent(type) {
 
     contentArea.innerHTML = content;
 }
+
+
+function mostrarAlerta() {
+    alert("Esta funcionalidade está sendo implementada!");
+}

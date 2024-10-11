@@ -58,19 +58,18 @@
 
       <!-- Dropdown de Acessibilidade -->
       <div class="dropdown ml-3">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button  class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Acessibilidade
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#" id="modoEscuroBtn">Modo Escuro</a>
-              <a class="dropdown-item" href="#">Aumentar Fonte</a>
-              <a class="dropdown-item" href="#">Diminuir Fonte</a>
+              <a onclick="mostrarAlerta()" class="dropdown-item" href="#" id="modoEscuroBtn">Modo Escuro</a>
+              <a onclick="mostrarAlerta()" class="dropdown-item" href="#">Aumentar Fonte</a>
+              <a onclick="mostrarAlerta()" class="dropdown-item" href="#">Diminuir Fonte</a>
           </div>
       </div>
   </div>
 </nav>
 
-        <!-- Restante do conteúdo -->
 
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -93,7 +92,7 @@
                     <div class="bg-box p-3">
                         <h5>Venha Aprender Conosco</h5>
                         <p>Desenvolva suas habilidades na TechAcademy.</p>
-                        <a href="#" class="btn btn-primary">COMECE AGORA</a>
+                        <a onclick="mostrarAlerta()"  class="btn btn-primary">COMECE AGORA</a>
                     </div>
                 </div>
             </div>
