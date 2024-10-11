@@ -63,3 +63,22 @@ body{
     font-size: 20px;
     margin-left: 50px;
 }
+
+
+
+.nav-link {
+    cursor: pointer; /* Torna o cursor de ponteiro ao passar sobre o link */
+    transition: color 0.3s ease, background-color 0.3s ease; /* Suaviza a transição das cores */
+}
+
+/* Estilo ao passar o mouse sobre as categorias */
+.nav-link:hover {
+    color: #007bff; /* Cor de texto ao passar o mouse (pode personalizar) */
+    background-color: #e2e6ea; /* Fundo mais claro ao passar o mouse */
+}
+
+/* Estilo quando estiver ativo, pode personalizar também */
+.nav-link.active {
+    background-color: #007bff;
+    color: white;
+}
