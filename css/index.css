@@ -1,0 +1,65 @@
+body{
+    background-color: #ffffff;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+}
+.header-content img {
+    margin-right: 15px;
+}
+
+.header-content h5 {
+    font-size: 15px;
+    color: #fff;
+    margin: 0; /* Melhor controle de espaçamento */
+    padding-left: 15px; /* Espaçamento lateral ao invés de topo */
+}
+
+
+.carousel-item {
+    padding-top: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.carousel-inner img {
+    height: 400px; /* Define a altura do carrossel */
+    width: 100%; /* Garante que a imagem ocupe toda a largura do contêiner */
+    object-fit: cover; /* Mantém a proporção da imagem e preenche o espaço */
+}
+
+.cursos{
+    background-color: #fff;
+    padding-top: 16px;
+    margin-top: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-block-end: 40px;
+}
+
+.cursos h1{
+    font-size: 20px;
+    padding-block-end: 30px;
+    margin-left: 20px;
+}
+
+.bg-box {
+    background-color: rgba(0, 0, 0, 0.6); /* Cor de fundo com opacidade */
+    padding: 15px; /* Espaço interno */
+    border-radius: 10px; /* Cantos arredondados */
+    display: inline-block; /* Garante que a caixa se ajuste ao conteúdo */
+    color: #fff; /* Cor do texto */
+}
+
+
+.servicos{
+    padding-top: 15px ;
+    padding-block-end: 50px;
+}
+
+.servicos h1{
+    font-size: 20px;
+    margin-left: 50px;
+}
