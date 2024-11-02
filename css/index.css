@@ -45,6 +45,7 @@ body{
     margin-left: 20px;
 }
 
+
 .bg-box {
     background-color: rgba(0, 0, 0, 0.6); /* Cor de fundo com opacidade */
     padding: 15px; /* Espaço interno */
@@ -82,3 +83,4 @@ body{
     background-color: #007bff;
     color: white;
 }
+

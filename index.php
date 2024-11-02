@@ -1,3 +1,10 @@
+<?php
+if (isset($_GET['erro'])){
+    $erro = 'É necessário logar para acessar o sistema!';
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -11,6 +18,10 @@
 </head>
 <body>
 
+<div style="background-color:coral; margin:10px">
+    <?php echo $erro ?? ''?>
+</div>
+
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light mt-3">  
   <a class="navbar-brand" href="#">
@@ -23,7 +34,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-              <a class="nav-link" href="#">Sobre Nós</a>
+              <a class="nav-link" href="about.html">Sobre Nós</a>
           </li>
           <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -41,8 +52,8 @@
                   Portal
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Aluno</a>
-                  <a class="dropdown-item" href="#">Professor</a>
+                  <a class="dropdown-item" href="loginaluno.php">Aluno</a>
+                  <a class="dropdown-item" href="loginprofessor.php">Professor</a>
               </div>
           </li>
       </ul>
@@ -51,9 +62,8 @@
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
       </form>
 
-      <!-- Ícone de Login -->
-      <a href="#" class="btn btn-outline-primary ml-3">
-          <i class="fas fa-user"></i> Login
+      <a href="matricula.php" class="btn btn-outline-primary ml-3">
+          <i class="fas fa-user"></i> Inscreva-se
       </a>
 
       <!-- Dropdown de Acessibilidade -->
@@ -69,22 +79,25 @@
       </div>
   </div>
 </nav>
-
-
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
               <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
               <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
               <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
             </ol>
+            
             <div class="carousel-inner">
+                
+              <div class="carousel-item">
+                <img class="d-block w-100" src="img/ensinomedio.jpg" alt="First slide">
+              </div>
               <div class="carousel-item active">
-                <img class="d-block w-100" src="img/MAIOR PLATAFORMA DE ESTUDO TECNOLÓGICO EAD (1).png" alt="First slide">
-                <div class="carousel-caption d-none d-md-block">
-                  </div>
+                <img class="d-block w-100" src="img/MAIOR PLATAFORMA DE ESTUDO TECNOLÓGICO EAD (1).png" alt="Second slide">
+                <div class="carousel-caption d-none d-md-block"></div>
               </div>
               <div class="carousel-item">
-                <img class="d-block w-100" src="img/CARROSEL2.png" alt="Second slide">
+                <img class="d-block w-100" src="img/CARROSEL2.png">
               </div>
               <div class="carousel-item">
                 <img class="d-block w-100" src="img/pexels-thisisengineering-3861964.jpg" alt="Third slide">
@@ -108,14 +121,14 @@
         </div>
 
         <section class="cursos">
-            <h1>Uma ampla seleção de cursos</h1>
+            <h1>Uma ampla seleção de cursos na Techstudy</h1>
         
             <div>
                 <div class="card text-center">
                     <div class="card-header">
                         <ul class="nav nav-tabs card-header-tabs">
                             <li class="nav-item">
-                                <a class="nav-link active" id="tabEAD" onclick="showContent('ead')">EAD</a>
+                                <a class="nav-link active" id="tabEAD" onclick="showContent('ead')">QUALIFICAÇÃO</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="tabGraduacao" onclick="showContent('graduacao')">GRADUAÇÃO</a>
@@ -127,7 +140,7 @@
                     </div>
         
                     <div id="content-area" class="row mt-3">
-                        <!-- Conteúdo EAD por padrão -->
+                        
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <div class="card">
                                 <img src="img/Programação de computadores.png" class="card-img-top" alt="Imagem do curso 1">
@@ -153,8 +166,7 @@
                 </div>
             </div>
         </section>
-         
-
+    
     <!-- Nova Seção de Cards -->
     <section class="servicos">
       <hr>
@@ -171,7 +183,7 @@
               </div>
               <div class="col">
                   <div class="card">
-                      <a href=""><img src="img/professor servico.png" class="card-img-top" alt="Portal do Professor"></a>
+                      <a href="loginprofessor.php"><img src="img/professor servico.png" class="card-img-top" alt="Portal do Professor"></a>
                       <div class="card-body">
                           <h5 class="card-title">Portal do Professor</h5>
                       </div>
@@ -179,7 +191,7 @@
               </div>
               <div class="col">
                   <div class="card">
-                     <a href=""><img src="img/portal aluno servico.png" class="card-img-top" alt="Portal do Aluno"></a> 
+                     <a href="portaldoaluno.php"><img src="img/portal aluno servico.png" class="card-img-top" alt="Portal do Aluno"></a> 
                       <div class="card-body">
                           <h5 class="card-title">Portal do Aluno</h5>
                       </div>
@@ -197,16 +209,13 @@
       </div>
   </section>
   
-      
-      <footer class="text-center mt-4">
-        <p>&copy; 2024 TechAcademy. Todos os direitos reservados.</p>
-      </footer>
+
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <script src="script/script.js"></script> 
+    <script src="js/script.js"></script> 
 
 
 
