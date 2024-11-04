@@ -277,7 +277,7 @@ $id = $_SESSION["id"];
 
     <div class="row">
 
-        <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30153.788252261566!2d72.82321484621745!3d19.141690214227783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b63aceef0c69%3A0x2aa80cf2287dfa3b!2sJogeshwari%20West%2C%20Mumbai%2C%20Maharashtra%20400047!5e0!3m2!1sen!2sin!4v1629452077891!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d129904879.35716826!2d3.616928!3d6.473164!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103bf9fdfa1b7c39%3A0x51e4744597426857!2sTECH%20ACADEMY!5e0!3m2!1sen!2sbr!4v1730603944914!5m2!1sen!2sbr" width="8000" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
     </div>
 

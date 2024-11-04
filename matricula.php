@@ -56,7 +56,7 @@
         <p class="terms">
           Ao continuar, você concorda com os <a href="#">Termos de Uso</a> Leia nossa <a href="#">Política de Privacidade</a>.
         </p>
-        <p>Possui uma conta? <a href="loginoaluno.php">Entrar</a></p>
+        <p>Possui uma conta? <a href="loginaluno.php">Entrar</a></p>
       </div>
     </div>
     
