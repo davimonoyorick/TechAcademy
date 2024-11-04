@@ -209,6 +209,9 @@ if (isset($_GET['erro'])){
       </div>
   </section>
   
+  <footer class="text-center mt-5">
+    <p>&copy; 2024 TechAcademy. Todos os direitos reservados.</p>
+</footer>
 
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

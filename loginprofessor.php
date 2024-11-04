@@ -6,28 +6,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
-    // Prepara a consulta SQL para evitar SQL injection
-    $stmt = $conn->prepare("SELECT * FROM usuarios WHERE email = ? AND senha = ?");
-    $stmt->bind_param("ss", $email, $senha); // "ss" indica que ambos os parâmetros são strings
 
-    // Executa a consulta
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $sql_code = "SELECT * FROM professores WHERE email = '$email' AND senha = '$senha'"; // aqui eu faço um SQL selecionando tudo da tabela alunos onde o atributo email é igual à variável email e senha também
+    $sql_query = $conn->query($sql_code) or die("Falha na execução do código SQL: " . $conn->error); // aqui eu executo o SQL
 
-    // Verifica se há algum resultado
-    if ($result->num_rows > 0) {
-        // Usuário encontrado, redireciona para a página de sucesso
-        header("Location: alunohome.php");
-        exit();
-    } else {
-        // Usuário não encontrado, mostra mensagem de erro
-        echo "<div class='alert alert-danger'>E-mail ou senha incorretos.</div>";
+    $quantidade = $sql_query->num_rows; 
+
+    if ($quantidade == 1) {
+        $usuario = $sql_query->fetch_assoc();
+
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        $_SESSION["id"] = $usuario['id'];
+        $_SESSION["nome"] = $usuario['nome']; 
+
+        $sql_code = "INSERT INTO acessos(aluno_id) VALUES (" . $_SESSION['id'] . ")";
+        $sql_query = $conn->query($sql_code) or die("Falha na execução do código SQL: " . $conn->error); // salvar o log
+
+        header("Location: professorhome.php");
+        exit(); // Garantir que o redirecionamento ocorra imediatamente
+    } else {?>
+
+      <div style="background-color:coral; margin:10px">
+      <?php echo 'Usuário ou senha incorretos!'?>
+  </div>
+  <?php
     }
-
-    // Fecha a declaração e a conexão
-    $stmt->close();
-    $conn->close();
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

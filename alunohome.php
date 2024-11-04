@@ -6,6 +6,8 @@ if(!isset($_SESSION['id'])){
     exit;
 }
 
+
+
 $nome = $_SESSION["nome"];
 
 $id = $_SESSION["id"];
@@ -41,7 +43,7 @@ $id = $_SESSION["id"];
     <div style="display: flex; align-items: center;">
         <h1 style="color:white; margin-right: 20px;">Bem-vindo, <?php echo htmlspecialchars($nome); ?></h1>
         <a href="#cursos">Cursos</a>
-        <a href="#review">Professores</a>
+        <a href="#professores">Professores</a>
         <a href="#contact">TechAcademy</a>
         <a href="#blogs">Artigos</a>
         <a href="boletimaluno.php">Desempenho</a>
@@ -68,10 +70,17 @@ $id = $_SESSION["id"];
 
 <section class="home" id="home">
 
+    <div class="row">
+
+    
     <div class="content">
         <h3>A TECHSTUDY ESTÁ DE CARA NOVA</h3>
         <p>Explore nossa nova plataforma e conheça os cursos que oferecemos para seu desenvolvimento.</p>
         <a href="#cursos" class="btn">Comece Agora</a>
+        
+    </div>
+    
+
     </div>
 
 </section>
@@ -87,13 +96,13 @@ $id = $_SESSION["id"];
     <div class="row">
 
         <div class="image">
-            <img src="images/about-img.jpeg" alt="">
+            <img src="img/teia.png" alt="">
         </div>
 
         <div class="content">
             <h3>Oportunidades de Carreira</h3>
             <p>Na nossa plataforma, entendemos que o início da carreira pode ser desafiador. Por isso, oferecemos um ambiente que conecta alunos com Oportunidades de Carreira que impulsionam o seu desenvolvimento profissional e preparam você para o mercado de trabalho. Nosso compromisso é proporcionar uma experiência completa que não apenas ajuda a encontrar um estágio ou emprego, mas também orienta na construção de uma carreira promissora.</p>
-            <a href="#" class="btn">Ler mais</a>
+            <a href="#" class="btn">Acessar</a>
         </div>
 
     </div>
@@ -236,7 +245,7 @@ $id = $_SESSION["id"];
 
 <!-- review section starts  -->
 
-<section class="review" id="review">
+<section class="review" id="professores">
 
     <h1 class="heading"> CONHEÇA NOSSOS <span>PROFESSORES</span> </h1>
 
@@ -342,34 +351,11 @@ $id = $_SESSION["id"];
     <div class="share">
         <a href="#" class="fab fa-instagram"></a>
         <a href="#" class="fab fa-linkedin"></a>
+        <p style="color:white">&copy; 2024 TechAcademy. Todos os direitos reservados.</p>
     </div>
-
-
-    <footer class="text-center mt-4">
-        <p>&copy; 2024 TechAcademy. Todos os direitos reservados.</p>
-    </footer>
-    
 </section>
 
-<!-- footer section ends -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- custom js file link  -->
 <script src="js/script.js"></script>
 
 </body>

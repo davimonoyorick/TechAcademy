@@ -11,102 +11,43 @@ if (!isset($_SESSION['id'])) {
 // ID do aluno logado
 $aluno_id = $_SESSION['id'];
 
-// Consulta SQL para obter as notas do aluno logado
-$sql = "SELECT d.nome_disciplina, p.nome AS professor, n.nota1, n.nota2, n.nota3, n.nota4
-        FROM Notas n
-        INNER JOIN Disciplinas d ON n.disciplina_id = d.id
-        INNER JOIN Professores p ON n.professor_id = p.id
-        WHERE n.aluno_id = $aluno_id";
+// Consulta SQL para obter as notas do aluno logado e calcular a média
+$sql_notas = "
+    SELECT a.nome AS nome_aluno,
+           d.nome_disciplina,
+           COALESCE(n.nota1, 0.00) AS nota1,
+           COALESCE(n.nota2, 0.00) AS nota2,
+           COALESCE(n.nota3, 0.00) AS nota3,
+           COALESCE(n.nota4, 0.00) AS nota4,
+           p.nome AS professor,
+           (COALESCE(n.nota1, 0) + COALESCE(n.nota2, 0) + COALESCE(n.nota3, 0) + COALESCE(n.nota4, 0)) /
+           (CASE WHEN n.nota1 IS NOT NULL THEN 1 ELSE 0 END + 
+            CASE WHEN n.nota2 IS NOT NULL THEN 1 ELSE 0 END + 
+            CASE WHEN n.nota3 IS NOT NULL THEN 1 ELSE 0 END + 
+            CASE WHEN n.nota4 IS NOT NULL THEN 1 ELSE 0 END) AS media
+    FROM Aluno_disciplina ad
+    JOIN Alunos a ON ad.aluno_id = a.id_aluno
+    JOIN Disciplinas d ON ad.disciplina_id = d.id
+    LEFT JOIN Notas n ON ad.aluno_id = n.aluno_id AND ad.disciplina_id = n.disciplina_id
+    LEFT JOIN Professores p ON d.id = p.disciplina_id
+    WHERE a.id_aluno = $aluno_id";
 
-$resultado = $conn->query($sql);
+$resultado_notas = $conn->query($sql_notas);
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Notas do Aluno</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link para um arquivo CSS -->
+    <title>Notas e Boletim do Aluno</title>
+    <link rel="stylesheet" href="css/boletimaluno.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #000; /* Fundo preto */
-            color: #fff; /* Texto branco */
-            margin: 0;
-            padding: 0;
-        }
-
-        .navbar {
-            background-color: #333; /* Cor da navbar */
-            padding: 10px;
-            text-align: center;
-        }
-
-        .navbar a {
-            color: white;
-            padding: 14px 20px;
-            text-decoration: none;
-            text-align: center;
-        }
-
-        .navbar a:hover {
-            background-color: #555;
-            color: white;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            background: #1c1c1c; /* Fundo escuro para o container */
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        h1 {
-            text-align: center;
-            color: #3498db; /* Cor azul */
-            margin-bottom: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        table th, table td {
-            padding: 10px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-
-        table th {
-            background-color: #3498db; /* Azul para o cabeçalho */
-            color: white;
-        }
-
-        table tr:nth-child(even) {
-            background-color: #333; /* Cor escura para linhas pares */
-        }
-
-        table tr:hover {
-            background-color: #555; /* Cor ao passar o mouse */
-        }
-
-        p {
-            text-align: center;
-            font-weight: bold;
-            color: #e74c3c; /* Cor vermelha */
-        }
-    </style>
 </head>
 <body>
 
 <div class="navbar">
     <a href="index.php">Home</a>
-    <a href="chat.php">Notas</a>
+    <a href="#">Perfil</a>
     <a href="alunohome.php">TechStudy</a>
     <a href="logout.php">Sair</a>
 </div>
@@ -114,7 +55,7 @@ $resultado = $conn->query($sql);
 <div class="container">
     <h1>Notas do Aluno</h1>
 
-    <?php if ($resultado->num_rows > 0): ?>
+    <?php if ($resultado_notas->num_rows > 0): ?>
         <table>
             <thead>
                 <tr>
@@ -124,20 +65,22 @@ $resultado = $conn->query($sql);
                     <th>Nota 2</th>
                     <th>Nota 3</th>
                     <th>Nota 4</th>
+                    <th>Média</th>
                 </tr>
             </thead>
             <tbody>
-                <?php while ($row = $resultado->fetch_assoc()): ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($row['nome_disciplina']); ?></td>
-                        <td><?php echo htmlspecialchars($row['professor']); ?></td>
-                        <td><?php echo htmlspecialchars($row['nota1']); ?></td>
-                        <td><?php echo htmlspecialchars($row['nota2']); ?></td>
-                        <td><?php echo htmlspecialchars($row['nota3']); ?></td>
-                        <td><?php echo htmlspecialchars($row['nota4']); ?></td>
-                    </tr>
-                <?php endwhile; ?>
-            </tbody>
+    <?php while ($row = $resultado_notas->fetch_assoc()): ?>
+        <tr>
+            <td><?php echo htmlspecialchars($row['nome_disciplina']); ?></td>
+            <td><?php echo htmlspecialchars($row['professor']); ?></td>
+            <td><?php echo htmlspecialchars($row['nota1']); ?></td>
+            <td><?php echo htmlspecialchars($row['nota2']); ?></td>
+            <td><?php echo htmlspecialchars($row['nota3']); ?></td>
+            <td><?php echo htmlspecialchars($row['nota4']); ?></td>
+            <td><?php echo number_format($row['media'], 2, ',', '.'); ?></td>
+        </tr>
+    <?php endwhile; ?>
+</tbody>
         </table>
     <?php else: ?>
         <p>Não há notas disponíveis para o aluno logado. Esta funcionalidade é exclusiva para alunos da TechAcademy. Caso você seja aluno e tenha dificuldades de acesso, entre em contato com a Central de Atendimento ao Estudante.</p>
